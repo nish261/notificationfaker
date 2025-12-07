@@ -1,5 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
-import html2canvas from 'html2canvas'
+import { toPng } from 'html-to-image'
+
+
 
 // SVG Icons matching exact iOS 16 specs - accept color prop
 const SignalIcon = ({ color = 'white' }: { color?: string }) => (
@@ -40,6 +42,12 @@ const CameraIcon = ({ color = 'white' }: { color?: string }) => (
 const PersonIcon = ({ color = 'white' }: { color?: string }) => (
   <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
     <path d="M7 6.196C8.463 6.196 9.734 4.884 9.734 3.175C9.734 1.486 8.463 0.235 7 0.235C5.537 0.235 4.266 1.513 4.266 3.188C4.266 4.884 5.53 6.196 7 6.196ZM2.413 12.526H11.58C12.312 12.526 12.749 12.184 12.749 11.617C12.749 9.853 10.541 7.42 6.993 7.42C3.452 7.42 1.244 9.853 1.244 11.617C1.244 12.184 1.682 12.526 2.413 12.526Z" fill={color} />
+  </svg>
+)
+
+const LockIcon = ({ color = 'white' }: { color?: string }) => (
+  <svg width="14" height="20" viewBox="0 0 14 20" fill="none">
+    <path d="M1.875 19.0527H11.1719C12.4316 19.0527 13.0469 18.4277 13.0469 17.0605V9.89258C13.0469 8.66211 12.5391 8.02734 11.4941 7.91992V5.45898C11.4941 1.77734 9.08203 0 6.52344 0C3.96484 0 1.55273 1.77734 1.55273 5.45898V7.94922C0.595703 8.10547 0 8.74023 0 9.89258V17.0605C0 18.4277 0.615234 19.0527 1.875 19.0527ZM3.125 5.25391C3.125 2.80273 4.69727 1.50391 6.52344 1.50391C8.34961 1.50391 9.92188 2.80273 9.92188 5.25391V7.91016H3.125V5.25391Z" fill={color} />
   </svg>
 )
 
@@ -223,31 +231,30 @@ function App() {
     if (!previewRef.current) return
     setIsExporting(true)
 
-    // Hide Dynamic Island for export (real screenshots don't show the notch)
-    const dynamicIsland = previewRef.current.querySelector('.dynamic-island') as HTMLElement
-    if (dynamicIsland) {
-      dynamicIsland.style.display = 'none'
-    }
-
     try {
-      const canvas = await html2canvas(previewRef.current, {
-        scale: 2,
-        useCORS: true,
-        allowTaint: true,
-        backgroundColor: null
+      // Small delay to ensure rendering is stable (especially for fonts)
+      await new Promise(resolve => setTimeout(resolve, 100))
+
+      const dataUrl = await toPng(previewRef.current, {
+        cacheBust: true,
+        pixelRatio: 2, // High resolution (Retina)
+        width: 375,
+        height: 812,
+        backgroundColor: '#000000', // Ensure black background if transparent
+        style: {
+          borderRadius: '0', // Force square corners
+          boxShadow: 'none',   // No shadows
+          transform: 'none'    // No transforms
+        }
       })
 
       const link = document.createElement('a')
       link.download = `lock-screen-${Date.now()}.png`
-      link.href = canvas.toDataURL('image/png')
+      link.href = dataUrl
       link.click()
     } catch (error) {
       console.error('Export failed:', error)
     } finally {
-      // Restore Dynamic Island visibility
-      if (dynamicIsland) {
-        dynamicIsland.style.display = ''
-      }
       setIsExporting(false)
     }
   }
@@ -479,9 +486,6 @@ function App() {
             }}
           />
 
-          {/* Dynamic Island */}
-          <div className="dynamic-island" />
-
           {/* Status Bar */}
           <div className="status-bar">
             <div className="status-bar-left">
@@ -494,8 +498,11 @@ function App() {
             </div>
           </div>
 
-          {/* Top Section - Date & Time (NO LOCK ICON) */}
+          {/* Top Section - Lock Icon, Date & Time */}
           <div className="top-section">
+            <div className="lock-icon-wrapper">
+              <LockIcon color={notificationStyle === 'light' ? 'white' : 'black'} />
+            </div>
             <div className="date-text" style={{ color: clockColor }}>{formatDate()}</div>
             <div className="time-display" style={{ fontFamily: clockFont, color: clockColor }}>
               {formatTime()}

@@ -69,9 +69,7 @@
   width: 375px;
   height: 812px;
   overflow: hidden;
-  border-radius: 44px;
   background: #000;
-  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
   flex-shrink: 0;
 }
 
@@ -390,6 +388,17 @@
   pointer-events: none;
 }
 
+/* Lock Icon - Centered above date */
+.lock-icon-wrapper {
+  position: absolute;
+  top: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 /* Date text - STRICT implementation of User's Figma Specs */
 .date-text {
   position: absolute;
@@ -463,21 +472,21 @@
   position: relative;
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
-  padding: 12px;
-  gap: 9px;
+  padding: 8px 10px;
+  gap: 8px;
   width: 357px;
-  min-height: 80px;
+  min-height: 60px;
   height: auto;
   backdrop-filter: blur(40px);
   -webkit-backdrop-filter: blur(40px);
-  border-radius: 22px;
+  border-radius: 20px;
 }
 
 /* Light Style - For dark wallpapers (light grey glass, WHITE text, WHITE icons) */
 .notification-light {
-  background: rgba(234, 234, 234, 0.7);
+  background: rgba(234, 234, 234, 0.6);
   background-blend-mode: luminosity;
 }
 
@@ -491,13 +500,13 @@
 }
 
 .notification-light .notification-icon {
-  background: rgba(234, 234, 234, 0.7);
+  background: rgba(234, 234, 234, 0.6);
   background-blend-mode: luminosity;
 }
 
 /* Dark Style - For bright wallpapers (dark glass, BLACK text, BLACK icons) */
 .notification-dark {
-  background: rgba(49, 49, 49, 0.6);
+  background: rgba(49, 49, 49, 0.55);
 }
 
 .notification-dark .notification-headline,
@@ -510,7 +519,7 @@
 }
 
 .notification-dark .notification-icon {
-  background: rgba(49, 49, 49, 0.6);
+  background: rgba(49, 49, 49, 0.55);
 }
 
 /* Notification Icon - 38x38px, radius 8px, opacity 0.8 */
