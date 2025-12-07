@@ -1,0 +1,362 @@
+@import "tailwindcss";
+
+/* SF Pro Rounded Font */
+@font-face {
+  font-family: 'SF Pro Rounded';
+  src: url('/sf-pro-rounded.otf') format('opentype');
+  font-weight: 600;
+  font-style: normal;
+}
+
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", system-ui, sans-serif;
+    background: #000;
+  }
+}
+
+/* iOS Lock Screen Container - Exact Frame 51 dimensions */
+.lock-screen {
+  position: relative;
+  width: 375px;
+  height: 812px;
+  overflow: hidden;
+  border-radius: 44px;
+  background: #000;
+}
+
+.wallpaper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+/* Dynamic Island */
+.dynamic-island {
+  position: absolute;
+  top: 11px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 126px;
+  height: 37px;
+  background: #000;
+  border-radius: 24px;
+  z-index: 100;
+}
+
+/* Status Bar */
+.status-bar {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 16px 0 28px;
+  height: 44px;
+}
+
+.status-bar-left {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.status-bar-right {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 0px 8px;
+  gap: 9px;
+}
+
+.carrier {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif;
+  font-weight: 590;
+  font-size: 15px;
+  line-height: 18px;
+  color: #fff;
+}
+
+/* TopSection - positioned to match iOS specs */
+.top-section {
+  position: absolute;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  top: 76px;
+  /* Date positioned at 76px from top per Figma */
+  gap: 0;
+}
+
+/* Date text - Figma: 22px, line-height 26px */
+.date-text {
+  font-family: 'SF Pro Rounded', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  font-weight: 510;
+  font-size: 22px;
+  line-height: 26px;
+  text-align: center;
+  color: #D7EBC1;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Time display - Large time (~90px to match the visual proportions) */
+.time-display {
+  font-family: 'SF Pro Rounded', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  font-weight: 300;
+  font-size: 96px;
+  line-height: 1;
+  letter-spacing: -3px;
+  color: #D7EBC1;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  margin-top: -2px;
+}
+
+/* Notifications Container - 12px gap between notifications */
+.notifications-container {
+  position: absolute;
+  bottom: 120px;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 0 9px;
+}
+
+.notification-wrapper {
+  position: relative;
+}
+
+/* Notification Card - EXACT FIGMA SPEC */
+.notification {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 12px;
+  gap: 9px;
+  isolation: isolate;
+  width: 357px;
+  height: 80px;
+  background: rgba(234, 234, 234, 0.7);
+  background-blend-mode: luminosity;
+  backdrop-filter: blur(40px);
+  -webkit-backdrop-filter: blur(40px);
+  border-radius: 22px;
+}
+
+/* Notification Icon - 38x38px, radius 8px, opacity 0.8 */
+.notification-icon {
+  width: 38px;
+  height: 38px;
+  min-width: 38px;
+  background: rgba(234, 234, 234, 0.7);
+  background-blend-mode: luminosity;
+  opacity: 0.8;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+/* Contact Avatar Icon Container - for Messages-style notifications */
+.notification-icon-contact {
+  position: relative;
+  width: 38px;
+  height: 38px;
+  min-width: 38px;
+  flex-shrink: 0;
+}
+
+/* Circular contact avatar with initials */
+.contact-avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: #8E8E93;
+  /* iOS grey for contact avatars */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.contact-initials {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  color: white;
+  letter-spacing: -0.2px;
+}
+
+/* Small app icon badge in bottom-right corner */
+.app-badge {
+  position: absolute;
+  bottom: -2px;
+  right: -2px;
+  width: 16px;
+  height: 16px;
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.app-badge svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* Content container */
+.notification-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 2px;
+  width: 286px;
+  height: 56px;
+  flex: 1;
+}
+
+/* Headline Row */
+.notification-headline-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 18px;
+}
+
+/* Headline - SF Pro Text, 16px, semibold (600), #111111 */
+.notification-headline {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 18px;
+  letter-spacing: -0.408px;
+  color: #111111;
+}
+
+/* Time - SF Pro Text, 12px, regular (400), #565656 */
+.notification-time {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 18px;
+  letter-spacing: -0.408px;
+  color: #565656;
+}
+
+/* Subheadline - SF Pro Text, 14px, regular (400), #111111 */
+.notification-subheadline {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 18px;
+  color: #111111;
+  width: 100%;
+  max-height: 36px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Bottom Actions */
+.bottom-actions {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 8px;
+}
+
+.bottom-buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 0 46px;
+  margin-bottom: 24px;
+}
+
+.action-button {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(70.4px);
+  -webkit-backdrop-filter: blur(70.4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+
+.action-button:hover {
+  transform: scale(1.05);
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.action-button:active {
+  transform: scale(0.95);
+  background: rgba(0, 0, 0, 0.4);
+}
+
+/* Focus Indicator */
+.focus-indicator {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.person-icon-wrapper {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(35px);
+  -webkit-backdrop-filter: blur(35px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.focus-text {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  color: #fff;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* Home Indicator */
+.home-indicator {
+  width: 134px;
+  height: 5px;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 3px;
+  mix-blend-mode: luminosity;
+}
