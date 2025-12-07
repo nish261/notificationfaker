@@ -242,7 +242,6 @@ function App() {
       await new Promise(resolve => setTimeout(resolve, 100))
 
       const dataUrl = await toPng(previewRef.current, {
-        cacheBust: true,
         pixelRatio: 2, // High resolution (Retina)
         width: 375,
         height: 812,
