@@ -3,8 +3,48 @@
 /* SF Pro Rounded Font */
 @font-face {
   font-family: 'SF Pro Rounded';
-  src: url('/sf-pro-rounded.otf') format('opentype');
+  src: url('/SF Pro - Semibold Rounded.otf') format('opentype');
   font-weight: 600;
+  font-style: normal;
+}
+
+/* SF Pro Soft Font */
+@font-face {
+  font-family: 'SF Pro Soft';
+  src: url('/SF Pro - Semibold Soft.otf') format('opentype');
+  font-weight: 600;
+  font-style: normal;
+}
+
+/* SF Pro Rails Font */
+@font-face {
+  font-family: 'SF Pro Rails';
+  src: url('/SF Pro - Semibold Rails.otf') format('opentype');
+  font-weight: 600;
+  font-style: normal;
+}
+
+/* SF Pro Stencil Font */
+@font-face {
+  font-family: 'SF Pro Stencil';
+  src: url('/SF Pro - Semibold Stencil.otf') format('opentype');
+  font-weight: 600;
+  font-style: normal;
+}
+
+/* New York Semibold Font */
+@font-face {
+  font-family: 'New York';
+  src: url('/New York - Semibold.otf') format('opentype');
+  font-weight: 600;
+  font-style: normal;
+}
+
+/* New York Heavy Font */
+@font-face {
+  font-family: 'New York Heavy';
+  src: url('/New York - Heavy.otf') format('opentype');
+  font-weight: 800;
   font-style: normal;
 }
 
@@ -31,6 +71,252 @@
   overflow: hidden;
   border-radius: 44px;
   background: #000;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+  flex-shrink: 0;
+}
+
+/* App Container - Two Panel Layout */
+.app-container {
+  display: flex;
+  min-height: 100vh;
+  gap: 32px;
+  padding: 24px;
+  background: #1a1a1a;
+  overflow-x: auto;
+  align-items: flex-start;
+}
+
+/* Editor Panel */
+.editor-panel {
+  width: 380px;
+  min-width: 380px;
+  background: #2a2a2a;
+  border-radius: 16px;
+  padding: 24px;
+  overflow-y: auto;
+  max-height: calc(100vh - 48px);
+  flex-shrink: 0;
+}
+
+.editor-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 24px;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", system-ui, sans-serif;
+}
+
+.editor-section {
+  margin-bottom: 24px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.section-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 16px;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif;
+}
+
+.input-group {
+  margin-bottom: 12px;
+}
+
+.input-group label {
+  display: block;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 6px;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif;
+}
+
+.text-input,
+.select-input,
+.file-input {
+  width: 100%;
+  padding: 10px 12px;
+  background: #3a3a3a;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  color: #fff;
+  font-size: 14px;
+  outline: none;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif;
+}
+
+.textarea {
+  min-height: 80px;
+  resize: vertical;
+}
+
+.upload-btn,
+.add-btn {
+  width: 100%;
+  padding: 10px 16px;
+  background: #007AFF;
+  border: none;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.upload-btn:hover,
+.add-btn:hover {
+  background: #0056b3;
+}
+
+/* Style Toggle for Light/Dark notifications */
+.style-toggle {
+  display: flex;
+  gap: 8px;
+}
+
+.toggle-btn {
+  flex: 1;
+  padding: 8px 12px;
+  border: 1px solid #555;
+  background: #2a2a2a;
+  color: #aaa;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 12px;
+  transition: all 0.2s;
+}
+
+.toggle-btn:hover {
+  background: #3a3a3a;
+  color: #fff;
+}
+
+.toggle-btn.active {
+  background: #007AFF;
+  border-color: #007AFF;
+  color: #fff;
+}
+
+.add-notification-btns {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.notification-editor {
+  background: #3a3a3a;
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 12px;
+}
+
+.notification-editor-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.remove-btn {
+  width: 24px;
+  height: 24px;
+  background: #ff3b30;
+  border: none;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.export-btn {
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(135deg, #34c759 0%, #30d158 100%);
+  border: none;
+  border-radius: 12px;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 12px;
+}
+
+/* Color Swatches */
+.color-swatches {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.color-swatch {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: transform 0.15s, border-color 0.15s;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.color-swatch:hover {
+  transform: scale(1.1);
+}
+
+.color-swatch.active {
+  border-color: #fff;
+  transform: scale(1.15);
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.3), 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+/* Custom Color Picker */
+.custom-color-picker {
+  width: 28px;
+  height: 28px;
+  border: 2px solid #555;
+  border-radius: 50%;
+  cursor: pointer;
+  padding: 0;
+  background: none;
+  -webkit-appearance: none;
+  appearance: none;
+  overflow: hidden;
+}
+
+.custom-color-picker::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+
+.custom-color-picker::-webkit-color-swatch {
+  border: none;
+  border-radius: 50%;
+}
+
+.custom-color-picker::-moz-color-swatch {
+  border: none;
+  border-radius: 50%;
+}
+
+.custom-color-picker:hover {
+  transform: scale(1.1);
+  border-color: #888;
+}
+
+/* Preview Panel */
+.preview-panel {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  min-width: 450px;
 }
 
 .wallpaper {
@@ -39,7 +325,8 @@
   left: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  background-size: cover;
+  background-position: center;
   z-index: 0;
 }
 
@@ -91,39 +378,66 @@
 }
 
 /* TopSection - positioned to match iOS specs */
+/* TopSection - Container for Date & Time */
 .top-section {
   position: absolute;
-  z-index: 10;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  top: 0;
+  left: 0;
   width: 100%;
-  top: 76px;
-  /* Date positioned at 76px from top per Figma */
-  gap: 0;
+  height: 200px;
+  /* ample space */
+  z-index: 10;
+  pointer-events: none;
 }
 
-/* Date text - Figma: 22px, line-height 26px */
+/* Date text - STRICT implementation of User's Figma Specs */
 .date-text {
-  font-family: 'SF Pro Rounded', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
-  font-weight: 510;
-  font-size: 22px;
-  line-height: 26px;
+  position: absolute;
+  width: 100%;
+  /* Allow full width for centering long dates */
+  height: 22px;
+  left: 0;
+  top: 76px;
+
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro", system-ui, sans-serif;
+  font-style: normal;
+  font-weight: 420;
+  /* Regular weight, less bold */
+  font-size: 19px;
+  /* Smaller size */
+  line-height: 22px;
   text-align: center;
-  color: #D7EBC1;
-  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+  mix-blend-mode: normal;
+  /* backdrop-filter: blur(20px); - clipped for performance/browser support if needed */
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
 }
 
-/* Time display - Large time (~90px to match the visual proportions) */
+/* Time display - Positioned relative to the date */
 .time-display {
+  position: absolute;
+  top: 110px;
+  /* Slight nudge down for clear separation on all fonts */
+  left: 0;
+  width: 100%;
+  height: 96px;
+
   font-family: 'SF Pro Rounded', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
-  font-weight: 300;
+  font-weight: 600;
   font-size: 96px;
   line-height: 1;
-  letter-spacing: -3px;
-  color: #D7EBC1;
+  /* Reset to fixed line-height for consistency */
+  letter-spacing: -2px;
+
+  display: flex;
+  align-items: center;
+  /* Center alignment handles varying ascents better than flex-start */
+  justify-content: center;
+
   text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-  margin-top: -2px;
 }
 
 /* Notifications Container - 12px gap between notifications */
@@ -135,15 +449,16 @@
   z-index: 10;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  /* Center notifications horizontally */
   gap: 12px;
-  padding: 0 9px;
 }
 
 .notification-wrapper {
   position: relative;
 }
 
-/* Notification Card - EXACT FIGMA SPEC */
+/* Notification Card - Base Styles */
 .notification {
   position: relative;
   display: flex;
@@ -152,14 +467,50 @@
   align-items: center;
   padding: 12px;
   gap: 9px;
-  isolation: isolate;
   width: 357px;
-  height: 80px;
-  background: rgba(234, 234, 234, 0.7);
-  background-blend-mode: luminosity;
+  min-height: 80px;
+  height: auto;
   backdrop-filter: blur(40px);
   -webkit-backdrop-filter: blur(40px);
   border-radius: 22px;
+}
+
+/* Light Style - For dark wallpapers (light grey glass, WHITE text, WHITE icons) */
+.notification-light {
+  background: rgba(234, 234, 234, 0.7);
+  background-blend-mode: luminosity;
+}
+
+.notification-light .notification-headline,
+.notification-light .notification-subheadline {
+  color: #000000 !important;
+}
+
+.notification-light .notification-time {
+  color: rgba(0, 0, 0, 0.55) !important;
+}
+
+.notification-light .notification-icon {
+  background: rgba(234, 234, 234, 0.7);
+  background-blend-mode: luminosity;
+}
+
+/* Dark Style - For bright wallpapers (dark glass, BLACK text, BLACK icons) */
+.notification-dark {
+  background: rgba(49, 49, 49, 0.6);
+}
+
+.notification-dark .notification-headline,
+.notification-dark .notification-subheadline {
+  color: #FFFFFF !important;
+}
+
+.notification-dark .notification-time {
+  color: rgba(255, 255, 255, 0.6) !important;
+}
+
+.notification-dark .notification-icon {
+  background: rgba(49, 49, 49, 0.6);
 }
 
 /* Notification Icon - 38x38px, radius 8px, opacity 0.8 */
@@ -220,15 +571,18 @@
   height: 16px;
 }
 
-/* Content container */
+/* Content container - matches Figma spec */
 .notification-content {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  gap: 2px;
-  width: 286px;
-  height: 56px;
+  padding: 0;
+  gap: 4px;
+  /* Per spec */
+  width: 285px;
+  /* Per spec */
+  min-height: 38px;
   flex: 1;
 }
 
@@ -239,44 +593,39 @@
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  height: 18px;
 }
 
-/* Headline - SF Pro Text, 16px, semibold (600), #111111 */
+/* Headline - SF Pro, 15px, semibold */
 .notification-headline {
-  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', system-ui, sans-serif;
   font-weight: 600;
-  font-size: 16px;
-  line-height: 18px;
-  letter-spacing: -0.408px;
-  color: #111111;
+  font-size: 15px;
+  line-height: 20px;
+  letter-spacing: -0.24px;
+  color: #FFFFFF !important;
 }
 
-/* Time - SF Pro Text, 12px, regular (400), #565656 */
+/* Time - SF Pro, 13px, regular, slightly muted */
 .notification-time {
-  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', system-ui, sans-serif;
   font-weight: 400;
-  font-size: 12px;
+  font-size: 13px;
   line-height: 18px;
-  letter-spacing: -0.408px;
-  color: #565656;
+  color: rgba(255, 255, 255, 0.55);
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
-/* Subheadline - SF Pro Text, 14px, regular (400), #111111 */
+/* Message/Description - SF Pro, 15px, regular */
 .notification-subheadline {
-  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', system-ui, sans-serif;
   font-weight: 400;
-  font-size: 14px;
-  line-height: 18px;
-  color: #111111;
+  font-size: 15px;
+  line-height: 20px;
+  letter-spacing: -0.24px;
+  color: #FFFFFF !important;
   width: 100%;
-  max-height: 36px;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  word-wrap: break-word;
 }
 
 /* Bottom Actions */
