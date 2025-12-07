@@ -1,73 +1,69 @@
-# React + TypeScript + Vite
+# 📱 iPhone Notification Faker
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A powerful, pixel-perfect iPhone lock screen generator built with React and TypeScript. Create realistic iOS 16+ lock screens with custom notifications, wallpapers, and styling, right in your browser.
 
-Currently, two official plugins are available:
+## ✨ Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Pixel-Perfect iOS Design**: Meticulously recreated UI elements including the Status Bar, Home Indicator, and Flashlight/Camera buttons using exact SVG paths.
+- **Smart Theming**:
+  - **Light Mode** (for Dark Wallpapers): White text, white icons, and light glass notifications.
+  - **Dark Mode** (for Bright Wallpapers): Black text, black icons, and dark glass notifications.
+  - Toggle instantly to see UI elements adapt for optimal contrast.
+- **Advanced Notification Editor**:
+  - **iMessage**: Create fake texts with custom contact names, avatars (image upload or initials), and messages.
+  - **App Notifications**: Generic notifications with custom app icons, titles, and time stamps.
+  - **Glassmorphism**: Authentic iOS blur and transparency effects.
+- **Customization**:
+  - **Wallpaper**: Upload any image to use as the lock screen background.
+  - **Clock**: Select from iOS-style fonts and pick **any** custom hex color.
+  - **Lock Icon**: Features a themed lock icon above the date.
+- **High-Quality Export**:
+  - Generates crisp **375x812 PNG** images.
+  - Automatically removes rounded corners and the "Dynamic Island" for a clean, rectangular screenshot.
+  - Uses `html-to-image` to ensure fonts and layers render without glitches.
 
-## React Compiler
+## 🛠️ Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Framework**: React + Vite
+- **Language**: TypeScript
+- **Styling**: Pure CSS (using CSS Variables & Backdrop Filter)
+- **Exporting**: `html-to-image`
+- **Icons**: Hand-coded SVGs based on SF Symbols
 
-## Expanding the ESLint configuration
+## 🚀 Getting Started
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/nishchalasri/notificationfaker.git
+   cd notificationfaker
+   ```
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+3. **Run the development server**
+   ```bash
+   npm run dev
+   ```
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+4. **Start Creating**
+   Open `http://localhost:5173` in your browser.
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 📸 How to Use
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+1. **Background**: Click "Upload Wallpaper" to choose your base image.
+2. **Clock Style**: Adjust the font family and use the color picker to set the clock text color.
+3. **Notification Style**: 
+   - Choose **Light** if your background is dark.
+   - Choose **Dark** if your background is bright.
+4. **Add Notifications**:
+   - Use the **+ iMessage** or **+ App Notification** buttons.
+   - Fill in the details (Name, Message, Time).
+   - Upload custom icons or avatars for that personal touch.
+5. **Export**: Click **Export as PNG** to download your fake lock screen.
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## 📄 License
+
+MIT

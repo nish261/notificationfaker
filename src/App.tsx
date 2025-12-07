@@ -185,6 +185,12 @@ function App() {
   const handleBackgroundUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]
     if (file) {
+      // Check for HEIC format which browsers don't support natively
+      if (file.name.toLowerCase().endsWith('.heic') || file.type === 'image/heic') {
+        alert('Browsers do not support .HEIC files natively. Please convert your photo to JPG or PNG first.')
+        return
+      }
+
       const url = URL.createObjectURL(file)
       setBackgroundUrl(url)
     }
@@ -476,13 +482,14 @@ function App() {
       <div className="preview-panel">
         <div className="lock-screen" ref={previewRef}>
           {/* Wallpaper */}
-          <div
+          <img
+            src={backgroundUrl}
             className="wallpaper"
+            alt=""
             style={{
-              backgroundImage: `url(${backgroundUrl})`,
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-              backgroundRepeat: 'no-repeat'
+              objectFit: 'cover',
+              width: '100%',
+              height: '100%'
             }}
           />
 
