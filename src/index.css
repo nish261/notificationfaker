@@ -486,7 +486,7 @@
 
 /* Light Style - For dark wallpapers (light grey glass, WHITE text, WHITE icons) */
 .notification-light {
-  background: rgba(234, 234, 234, 0.6);
+  background: rgba(234, 234, 234, 0.7);
   background-blend-mode: luminosity;
 }
 
@@ -500,13 +500,13 @@
 }
 
 .notification-light .notification-icon {
-  background: rgba(234, 234, 234, 0.6);
+  background: rgba(234, 234, 234, 0.7);
   background-blend-mode: luminosity;
 }
 
 /* Dark Style - For bright wallpapers (dark glass, BLACK text, BLACK icons) */
 .notification-dark {
-  background: rgba(49, 49, 49, 0.55);
+  background: rgba(49, 49, 49, 0.65);
 }
 
 .notification-dark .notification-headline,
@@ -519,7 +519,7 @@
 }
 
 .notification-dark .notification-icon {
-  background: rgba(49, 49, 49, 0.55);
+  background: rgba(49, 49, 49, 0.65);
 }
 
 /* Notification Icon - 38x38px, radius 8px, opacity 0.8 */
