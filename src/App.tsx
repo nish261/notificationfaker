@@ -447,7 +447,7 @@ function App() {
               )}
 
               <div className="input-group">
-                <label>Headline</label>
+                <label>{notification.type === 'imessage' ? 'Sender Name' : 'Headline'}</label>
                 <input
                   type="text"
                   value={notification.headline}

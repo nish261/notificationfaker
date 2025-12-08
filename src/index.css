@@ -604,19 +604,19 @@
   width: 100%;
 }
 
-/* Headline - SF Pro, 15px, semibold */
+/* Headline - SF Pro, 15px, medium (looks closer to iOS semibold on web) */
 .notification-headline {
-  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', system-ui, sans-serif;
-  font-weight: 600;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro', system-ui, sans-serif;
+  font-weight: 500;
   font-size: 15px;
   line-height: 20px;
-  letter-spacing: -0.24px;
+  letter-spacing: -0.4px;
   color: #FFFFFF !important;
 }
 
 /* Time - SF Pro, 13px, regular, slightly muted */
 .notification-time {
-  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', system-ui, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro', system-ui, sans-serif;
   font-weight: 400;
   font-size: 13px;
   line-height: 18px;
@@ -627,11 +627,11 @@
 
 /* Message/Description - SF Pro, 15px, regular */
 .notification-subheadline {
-  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', system-ui, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro', system-ui, sans-serif;
   font-weight: 400;
   font-size: 15px;
   line-height: 20px;
-  letter-spacing: -0.24px;
+  letter-spacing: -0.2px;
   color: #FFFFFF !important;
   width: 100%;
   word-wrap: break-word;
