@@ -191,8 +191,13 @@ function App() {
         return
       }
 
-      const url = URL.createObjectURL(file)
-      setBackgroundUrl(url)
+      const reader = new FileReader()
+      reader.onload = (event) => {
+        if (event.target?.result) {
+          setBackgroundUrl(event.target.result as string)
+        }
+      }
+      reader.readAsDataURL(file)
     }
   }
 
@@ -200,10 +205,15 @@ function App() {
   const handleIconUpload = (notificationId: string, e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]
     if (file) {
-      const url = URL.createObjectURL(file)
-      setNotifications(prev => prev.map(n =>
-        n.id === notificationId ? { ...n, iconUrl: url } : n
-      ))
+      const reader = new FileReader()
+      reader.onload = (event) => {
+        if (event.target?.result) {
+          setNotifications(prev => prev.map(n =>
+            n.id === notificationId ? { ...n, iconUrl: event.target.result as string } : n
+          ))
+        }
+      }
+      reader.readAsDataURL(file)
     }
   }
 
