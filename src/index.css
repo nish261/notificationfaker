@@ -642,10 +642,22 @@
 .emoji-large {
   font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
   font-size: 17px;
-  /* Larger than text */
-  vertical-align: -1px;
-  /* Align visual center */
+  vertical-align: -2px;
   line-height: 1;
+  margin: 0 1.5px;
+  /* Prevent overlap with text */
+  display: inline-block;
+}
+
+/* Export Overrides - Fixes missing blur in PNGs */
+.exporting .notification-dark {
+  background: rgba(35, 35, 35, 0.92) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.exporting .notification-light {
+  background: rgba(245, 245, 245, 0.92) !important;
+  border: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 /* Bottom Actions */
