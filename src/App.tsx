@@ -524,7 +524,7 @@ function App() {
 
       {/* Preview Panel */}
       <div className="preview-panel">
-        <div className={`lock-screen ${isExporting ? 'exporting' : ''}`} ref={previewRef}>
+        <div className="lock-screen" ref={previewRef}>
           {/* Wallpaper */}
           <img
             src={backgroundUrl}
