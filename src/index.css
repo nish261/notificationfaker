@@ -658,8 +658,8 @@
 }
 
 .exporting .notification-light {
-  background: rgba(234, 234, 234, 0.85) !important;
-  /* Grey (not white) at 85% to match preview tone */
+  background: rgba(234, 234, 234, 0.78) !important;
+  /* Grey at 78% - less white, more silver */
   backdrop-filter: none;
   border: 1px solid rgba(255, 255, 255, 0.25);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4);
