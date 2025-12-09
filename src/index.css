@@ -609,9 +609,10 @@
   font-family: 'SF Pro Text', 'SF Pro', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
   font-weight: 510;
   /* Slightly more than 500 for crispness */
-  font-size: 14.5px;
-  line-height: 20px;
-  letter-spacing: -0.4px;
+  font-size: 13.5px;
+  /* Even tighter for authentic feel */
+  line-height: 17px;
+  letter-spacing: -0.5px;
   color: #FFFFFF !important;
 }
 
@@ -630,9 +631,9 @@
 .notification-subheadline {
   font-family: 'SF Pro Text', 'SF Pro', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
   font-weight: 400;
-  font-size: 14.5px;
-  line-height: 20px;
-  letter-spacing: -0.2px;
+  font-size: 13.5px;
+  line-height: 17px;
+  letter-spacing: -0.3px;
   color: #FFFFFF !important;
   width: 100%;
   word-wrap: break-word;
