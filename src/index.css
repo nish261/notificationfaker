@@ -506,7 +506,7 @@
 
 /* Dark Style - For bright wallpapers (dark glass, BLACK text, BLACK icons) */
 .notification-dark {
-  background: rgba(49, 49, 49, 0.65);
+  background: rgba(40, 40, 40, 0.75);
 }
 
 .notification-dark .notification-headline,
@@ -519,7 +519,7 @@
 }
 
 .notification-dark .notification-icon {
-  background: rgba(49, 49, 49, 0.65);
+  background: rgba(40, 40, 40, 0.75);
 }
 
 /* Notification Icon - 38x38px, radius 8px, opacity 0.8 */
@@ -529,7 +529,7 @@
   min-width: 38px;
   background: rgba(234, 234, 234, 0.7);
   background-blend-mode: luminosity;
-  opacity: 0.8;
+  /* opacity: 0.8; Removed to make icon vivid */
   border-radius: 8px;
   flex-shrink: 0;
 }
@@ -609,7 +609,7 @@
   font-family: 'SF Pro Text', 'SF Pro', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
   font-weight: 510;
   /* Slightly more than 500 for crispness */
-  font-size: 15px;
+  font-size: 14.5px;
   line-height: 20px;
   letter-spacing: -0.4px;
   color: #FFFFFF !important;
@@ -630,7 +630,7 @@
 .notification-subheadline {
   font-family: 'SF Pro Text', 'SF Pro', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
   font-weight: 400;
-  font-size: 15px;
+  font-size: 14.5px;
   line-height: 20px;
   letter-spacing: -0.2px;
   color: #FFFFFF !important;
