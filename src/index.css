@@ -656,7 +656,8 @@
 }
 
 .exporting .notification-light {
-  background: rgba(255, 255, 255, 0.75) !important;
+  background: rgba(234, 234, 234, 0.7) !important;
+  /* Exact match to live preview */
   border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
