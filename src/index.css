@@ -649,7 +649,7 @@
   display: inline-block;
 }
 
-/* Export Overrides - Simulate blur/frost with blend modes and highlights */
+/* Export Overrides - Simulate blur with White Glass variant */
 .exporting .notification-dark {
   background: rgba(40, 40, 40, 0.85) !important;
   backdrop-filter: none;
@@ -658,10 +658,8 @@
 }
 
 .exporting .notification-light {
-  background: rgba(234, 234, 234, 0.8) !important;
-  /* Slightly more see-through to let blend-mode work */
-  background-blend-mode: luminosity;
-  /* CRITICAL: Makes it look like it's interacting with the background */
+  background: rgba(255, 255, 255, 0.65) !important;
+  /* Pure White at 65% = Milky Glass Look */
   backdrop-filter: none;
   border: 1px solid rgba(255, 255, 255, 0.25);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4);
