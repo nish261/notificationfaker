@@ -273,6 +273,22 @@ function App() {
       setIsExporting(false)
     }
   }
+  // Render text with larger emojis
+  const renderTextWithEmojis = (text: string) => {
+    // Basic regex for common emoji ranges if property escapes fail, but trying modern first
+    // Using a simpler split approach that works in most modern browsers
+    try {
+      const parts = text.split(/(\p{Extended_Pictographic})/u)
+      return parts.map((part, i) =>
+        /\p{Extended_Pictographic}/u.test(part) ? (
+          <span key={i} className="emoji-large">{part}</span>
+        ) : part
+      )
+    } catch (e) {
+      // Fallback for older browsers
+      return text
+    }
+  }
 
   return (
     <div className="app-container">
@@ -288,19 +304,13 @@ function App() {
             ref={fileInputRef}
             accept="image/*"
             onChange={handleBackgroundUpload}
-            style={{ display: 'none' }}
+            className="file-input"
           />
-          <button
-            className="upload-btn"
-            onClick={() => fileInputRef.current?.click()}
-          >
-            Upload Wallpaper
-          </button>
         </div>
 
-        {/* Clock Section */}
+        {/* Clock Style Section */}
         <div className="editor-section">
-          <h2 className="section-title">Clock</h2>
+          <h2 className="section-title">Clock Style</h2>
           <div className="input-group">
             <label>Font</label>
             <select
@@ -314,8 +324,8 @@ function App() {
             </select>
           </div>
           <div className="input-group">
-            <label>Time Color</label>
-            <div className="color-swatches">
+            <label>Color</label>
+            <div className="color-grid">
               {CLOCK_COLORS.map(color => (
                 <button
                   key={color.id}
@@ -325,31 +335,177 @@ function App() {
                   title={color.name}
                 />
               ))}
-              {/* Custom Color Picker */}
-              <input
-                type="color"
-                value={clockColor}
-                onChange={(e) => setClockColor(e.target.value)}
-                className="custom-color-picker"
-                title="Custom Color"
-              />
+              <div className="custom-color-wrapper">
+                <input
+                  type="color"
+                  value={clockColor}
+                  onChange={(e) => setClockColor(e.target.value)}
+                  className="custom-color-input"
+                  title="Custom Color"
+                />
+              </div>
             </div>
           </div>
+        </div>
+
+        {/* Notification Style Section */}
+        <div className="editor-section">
+          <h2 className="section-title">Notification Style</h2>
+          <div className="style-toggles">
+            <button
+              className={`style-toggle ${notificationStyle === 'light' ? 'active' : ''}`}
+              onClick={() => setNotificationStyle('light')}
+            >
+              Light (for Dark BG)
+            </button>
+            <button
+              className={`style-toggle ${notificationStyle === 'dark' ? 'active' : ''}`}
+              onClick={() => setNotificationStyle('dark')}
+            >
+              Dark (for Light BG)
+            </button>
+          </div>
+        </div>
+
+        {/* Notifications Section */}
+        <div className="editor-section">
+          <h2 className="section-title">Notifications</h2>
+          <div className="notifications-list">
+            {notifications.map(notification => (
+              <div key={notification.id} className="notification-editor-item">
+                <div className="notification-header">
+                  <span className="notification-type-badge">
+                    {notification.type === 'imessage' ? 'iMessage' : 'App'}
+                  </span>
+                  <button
+                    className="remove-btn"
+                    onClick={() => removeNotification(notification.id)}
+                  >
+                    ×
+                  </button>
+                </div>
+
+                {notification.type === 'imessage' ? (
+                  <>
+                    <div className="input-group">
+                      <label>Initials</label>
+                      <input
+                        type="text"
+                        maxLength={2}
+                        value={notification.initials}
+                        onChange={(e) => updateNotification(notification.id, { initials: e.target.value.toUpperCase() })}
+                        className="text-input"
+                      />
+                    </div>
+                    <div className="input-group">
+                      <label>Contact Photo</label>
+                      <input
+                        type="file"
+                        accept="image/*"
+                        onChange={(e) => {
+                          const file = e.target.files?.[0]
+                          if (file) {
+                            const reader = new FileReader()
+                            reader.onload = (ev) => {
+                              updateNotification(notification.id, { avatarUrl: ev.target?.result as string })
+                            }
+                            reader.readAsDataURL(file)
+                          }
+                        }}
+                        className="file-input"
+                      />
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <div className="input-group">
+                      <label>App Name</label>
+                      <input
+                        type="text"
+                        value={notification.appName}
+                        onChange={(e) => updateNotification(notification.id, { appName: e.target.value })}
+                        className="text-input"
+                      />
+                    </div>
+                    <div className="input-group">
+                      <label>Icon</label>
+                      <input
+                        type="file"
+                        accept="image/*"
+                        onChange={(e) => handleIconUpload(notification.id, e)}
+                        className="file-input"
+                      />
+                    </div>
+                  </>
+                )}
+
+                <div className="input-group">
+                  <label>{notification.type === 'imessage' ? 'Sender Name' : 'Headline'}</label>
+                  <input
+                    type="text"
+                    value={notification.headline}
+                    onChange={(e) => updateNotification(notification.id, { headline: e.target.value })}
+                    className="text-input"
+                  />
+                </div>
+
+                <div className="input-group">
+                  <label>Message</label>
+                  <textarea
+                    value={notification.message}
+                    onChange={(e) => updateNotification(notification.id, { message: e.target.value })}
+                    className="text-input message-input"
+                    rows={2}
+                  />
+                </div>
+
+                <div className="input-group">
+                  <label>Time Ago</label>
+                  <input
+                    type="text"
+                    value={notification.timeAgo}
+                    onChange={(e) => updateNotification(notification.id, { timeAgo: e.target.value })}
+                    className="text-input"
+                  />
+                </div>
+              </div>
+            ))}
+
+            <div className="add-buttons">
+              <button
+                className="add-btn"
+                onClick={() => addNotification('imessage')}
+              >
+                + iMessage
+              </button>
+              <button
+                className="add-btn"
+                onClick={() => addNotification('app')}
+              >
+                + App Notification
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* Global Settings */}
+        <div className="editor-section">
+          <h2 className="section-title">Settings</h2>
           <div className="input-group">
-            <label>Custom Time (leave empty for live)</label>
+            <label>Custom Time (Optional)</label>
             <input
               type="text"
-              placeholder="e.g., 9:41"
+              placeholder="e.g. 9:41"
               value={customTime}
               onChange={(e) => setCustomTime(e.target.value)}
               className="text-input"
             />
           </div>
           <div className="input-group">
-            <label>Custom Date (leave empty for live)</label>
+            <label>Custom Date (Optional)</label>
             <input
               type="text"
-              placeholder="e.g., Monday, June 6"
+              placeholder="e.g. Tuesday, September 12"
               value={customDate}
               onChange={(e) => setCustomDate(e.target.value)}
               className="text-input"
@@ -357,127 +513,6 @@ function App() {
           </div>
         </div>
 
-        {/* Notifications Section */}
-        <div className="editor-section">
-          <h2 className="section-title">Notifications</h2>
-
-          {/* Style Toggle */}
-          <div className="input-group">
-            <label>Notification Style</label>
-            <div className="style-toggle">
-              <button
-                className={`toggle-btn ${notificationStyle === 'light' ? 'active' : ''}`}
-                onClick={() => setNotificationStyle('light')}
-              >
-                Light (Dark Wallpaper)
-              </button>
-              <button
-                className={`toggle-btn ${notificationStyle === 'dark' ? 'active' : ''}`}
-                onClick={() => setNotificationStyle('dark')}
-              >
-                Dark (Bright Wallpaper)
-              </button>
-            </div>
-          </div>
-
-          <div className="add-notification-btns">
-            <button className="add-btn" onClick={() => addNotification('imessage')}>
-              + iMessage
-            </button>
-            <button className="add-btn" onClick={() => addNotification('app')}>
-              + App Notification
-            </button>
-          </div>
-
-          {notifications.map((notification, index) => (
-            <div key={notification.id} className="notification-editor">
-              <div className="notification-editor-header">
-                <span>#{index + 1} - {notification.type === 'imessage' ? 'iMessage' : 'App'}</span>
-                <button
-                  className="remove-btn"
-                  onClick={() => removeNotification(notification.id)}
-                >
-                  ✕
-                </button>
-              </div>
-
-              {notification.type === 'imessage' ? (
-                <>
-                  <div className="input-group">
-                    <label>Initials</label>
-                    <input
-                      type="text"
-                      value={notification.initials || ''}
-                      onChange={(e) => updateNotification(notification.id, { initials: e.target.value })}
-                      className="text-input"
-                      maxLength={2}
-                    />
-                  </div>
-                  <div className="input-group">
-                    <label>Contact Photo</label>
-                    <input
-                      type="file"
-                      accept="image/*"
-                      onChange={(e) => {
-                        const file = e.target.files?.[0]
-                        if (file) {
-                          const reader = new FileReader()
-                          reader.onload = (ev) => {
-                            updateNotification(notification.id, { avatarUrl: ev.target?.result as string })
-                          }
-                          reader.readAsDataURL(file)
-                        }
-                      }}
-                      className="file-input"
-                    />
-                  </div>
-                </>
-              ) : (
-                <>
-                  <div className="input-group">
-                    <label>App Icon</label>
-                    <input
-                      type="file"
-                      accept="image/*"
-                      onChange={(e) => handleIconUpload(notification.id, e)}
-                      className="file-input"
-                    />
-                  </div>
-                </>
-              )}
-
-              <div className="input-group">
-                <label>{notification.type === 'imessage' ? 'Sender Name' : 'Headline'}</label>
-                <input
-                  type="text"
-                  value={notification.headline}
-                  onChange={(e) => updateNotification(notification.id, { headline: e.target.value })}
-                  className="text-input"
-                />
-              </div>
-              <div className="input-group">
-                <label>Message</label>
-                <textarea
-                  value={notification.message}
-                  onChange={(e) => updateNotification(notification.id, { message: e.target.value })}
-                  className="text-input textarea"
-                />
-              </div>
-              <div className="input-group">
-                <label>Time</label>
-                <input
-                  type="text"
-                  value={notification.timeAgo}
-                  onChange={(e) => updateNotification(notification.id, { timeAgo: e.target.value })}
-                  className="text-input"
-                  placeholder="e.g., now, 5m ago"
-                />
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Export Button */}
         <button
           className="export-btn"
           onClick={exportAsImage}
@@ -505,7 +540,6 @@ function App() {
           {/* Status Bar */}
           <div className="status-bar">
             <div className="status-bar-left">
-              {/* Carrier text removed as per user request */}
             </div>
             <div className="status-bar-right">
               <SignalIcon color={notificationStyle === 'light' ? 'white' : 'black'} />
@@ -562,11 +596,11 @@ function App() {
                   )}
                   <div className="notification-content">
                     <div className="notification-headline-row">
-                      <span className="notification-headline">{notification.headline}</span>
+                      <span className="notification-headline">{renderTextWithEmojis(notification.headline)}</span>
                       <span className="notification-time">{notification.timeAgo}</span>
                     </div>
                     <div className="notification-subheadline">
-                      {notification.message}
+                      {renderTextWithEmojis(notification.message)}
                     </div>
                   </div>
                 </div>

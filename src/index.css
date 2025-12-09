@@ -609,8 +609,8 @@
   font-family: 'SF Pro Text', 'SF Pro', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
   font-weight: 510;
   /* Slightly more than 500 for crispness */
-  font-size: 14.5px;
-  line-height: 19px;
+  font-size: 14px;
+  line-height: 18px;
   letter-spacing: -0.4px;
   /* Slightly less aggressive tracking for 14px */
   color: #FFFFFF !important;
@@ -631,12 +631,21 @@
 .notification-subheadline {
   font-family: 'SF Pro Text', 'SF Pro', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
   font-weight: 400;
-  font-size: 14.5px;
-  line-height: 19px;
+  font-size: 14px;
+  line-height: 18px;
   letter-spacing: -0.25px;
   color: #FFFFFF !important;
   width: 100%;
   word-wrap: break-word;
+}
+
+.emoji-large {
+  font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+  font-size: 17px;
+  /* Larger than text */
+  vertical-align: -1px;
+  /* Align visual center */
+  line-height: 1;
 }
 
 /* Bottom Actions */
