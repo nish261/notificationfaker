@@ -484,7 +484,7 @@
   border-radius: 20px;
 }
 
-/* Light Style - For dark wallpapers (light grey glass, WHITE text, WHITE icons) */
+/* Light Style - For dark wallpapers (light grey glass, rgba(234,234,234), 70% opacity) */
 .notification-light {
   background: rgba(234, 234, 234, 0.7);
   background-blend-mode: luminosity;
@@ -504,7 +504,7 @@
   background-blend-mode: luminosity;
 }
 
-/* Dark Style - For bright wallpapers (dark glass, BLACK text, BLACK icons) */
+/* Dark Style - For bright wallpapers (dark grey glass, rgba(40,40,40), 75% opacity) */
 .notification-dark {
   background: rgba(40, 40, 40, 0.75);
 }
@@ -647,6 +647,20 @@
   margin: 0 1.5px;
   /* Prevent overlap with text */
   display: inline-block;
+}
+
+/* Export Overrides - Simulate blur with higher opacity */
+.exporting .notification-dark {
+  background: rgba(40, 40, 40, 0.85) !important;
+  backdrop-filter: none;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.exporting .notification-light {
+  background: rgba(234, 234, 234, 0.82) !important;
+  /* "Goldilocks" opacity: Solid enough to look milky, transparent enough to not be white block */
+  backdrop-filter: none;
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 /* Bottom Actions */
