@@ -1,0 +1,27 @@
+/* Export Optimization - Fixes missing blur in screenshots */
+.exporting .notification-dark {
+    background: rgba(30, 30, 30, 0.92) !important;
+    backdrop-filter: none;
+    /* Disable blur to prevent artifacts */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    /* Subtle border to define edges */
+}
+
+.exporting .notification-light {
+    background: rgba(245, 245, 245, 0.92) !important;
+    backdrop-filter: none;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* Ensure emojis have breathing room during export */
+.emoji-large {
+    font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+    font-size: 17px;
+    vertical-align: -2px;
+    /* Slight adjustment */
+    line-height: 1;
+    margin: 0 1px;
+    /* Prevent overlap */
+    display: inline-block;
+    /* Ensure margins work */
+}

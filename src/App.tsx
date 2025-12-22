@@ -207,9 +207,10 @@ function App() {
     if (file) {
       const reader = new FileReader()
       reader.onload = (event) => {
-        if (event.target?.result) {
+        const result = event.target?.result
+        if (result) {
           setNotifications(prev => prev.map(n =>
-            n.id === notificationId ? { ...n, iconUrl: event.target.result as string } : n
+            n.id === notificationId ? { ...n, iconUrl: result as string } : n
           ))
         }
       }
